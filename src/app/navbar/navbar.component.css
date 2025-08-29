@@ -1,0 +1,19 @@
+.navbar {
+  width: 100%;
+  background-color: black;
+}
+
+.navbar-collapse {
+  flex-grow: 0; /* Prevents the navbar from taking up extra space on mobile */
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    padding: 1rem 0;
+  }
+  .btn-outline-light {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
