@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import {  AccountStatementResponseDto } from '../DTOs/AccountReadDtos/AccountStatementDto';
-import { PageResult } from '../DTOs/PagedResult/PagedResult';
 
 export interface AccountLookup {
   accountId: string;
@@ -13,7 +12,7 @@ export interface AccountLookup {
 
 @Injectable({ providedIn: 'root' })
 export class BalancefService {
-  private baseUrl = 'https://localhost:7028/api/Accounts';
+  private baseUrl = 'http://localhost:5000/api/Accounts';
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +21,6 @@ export class BalancefService {
 
     return this.http.get<any>(`${this.baseUrl}/autocomplete`, { params }).pipe(
       map((res: any) => {
-        // نعدّل الشكل لو الـ API بيرجع {data:[...]} أو مصفوفة مباشرة
         const arr = Array.isArray(res) ? res : (Array.isArray(res?.data) ? res.data : []);
         return arr
           .map((x: any) => ({

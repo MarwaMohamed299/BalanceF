@@ -24,7 +24,7 @@ export class BalanceTableComponent {
 accounts: AccountStatementDto[] = [];
 totalCount: number = 0;
 pageNumber: number = 1;
-pageSize: number = 3;
+pageSize: number = 50;
 
 
  Math = Math; 
@@ -250,11 +250,16 @@ private getCurrentDate(): string {
 getCleanRemarks(remarks: string): string {
   if (!remarks) return '';
   
-  // إزالة HTML tags وتحويل <br/> لـ line breaks
   return remarks
     .replace(/<br\s*\/?>/gi, '\n')
     .replace(/<[^>]*>/g, '')
     .trim();
+}
+closeModal() {
+  const activeElement = document.activeElement as HTMLElement;
+  if (activeElement && activeElement.closest('#transactionModal')) {
+    activeElement.blur();
+  }
 }
 
 }
